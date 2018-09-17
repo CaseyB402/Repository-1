@@ -20,7 +20,7 @@ public class CharacterMove : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		Grounded = Physics20.OverlapCircle(GroundCheck.Position, GroundCheckRadius, WhatIsGround);
+		Grounded = Physics2D.OverlapCircle(GroundCheck.Position, GroundCheckRadius, WhatIsGround);
 	}
 
 
@@ -34,12 +34,19 @@ public class CharacterMove : MonoBehaviour {
 			Jump();
 			
 		}
-
-		print ("Hello World");	
+	// This Makes The Character Move From Side To Side
+	if(Input.GetKey (KeyCode.D)){
+		GetComponent<RigidBody2D>().Velocity = new Vector2(MoveSpeed, GetComponent<RigidBody2D>().Velocity.y);
+	}
+	if(Input.GetKey (KeyCode.A)){
+		GetComponent<RigidBody2D>().Velocity = new Vector2(-MoveSpeed, GetComponent<RigidBody2D>().Velocity.y);
+	}
+	
 	}
 	public void Jump(){
 		GetComponent<Rigidbody2D>().Velocity = new Vector2(GetComponent<Rigidbody2D>().Velocity.x, JumpHeight);
 
+	
 
 	}
 }
