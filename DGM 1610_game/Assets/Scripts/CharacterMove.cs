@@ -4,47 +4,42 @@ using UnityEngine;
 
 public class CharacterMove : MonoBehaviour {
 	
-	// Player Movement Variables
+		// Player Movement Variables
 	public int MoveSpeed;
 	public float JumpHeight;
-
-	// Player grounded variables
+ 	// Player grounded variables
 	public Transform GroundCheck;
 	public float GroundCheckRadius;
 	public LayerMask WhatIsGround;
 	private bool Grounded;
-
-	// Use this for initialization
+ 	// Use this for initialization
 	void Start () {
-		
+		print("Hello World!");
+	
 	}
 	
-	void FixedUpdate () {
-		Grounded = Physics2D.OverlapCircle(GroundCheck.Position, GroundCheckRadius, WhatIsGround);
+ 	void FixedUpdate () {
+		Grounded = Physics2D.OverlapCircle(GroundCheck.position, GroundCheckRadius, WhatIsGround);
 	}
-
-
-
-
-	// Update Is Called Once Per Frame
+ 	// Update is called once per frame
 	void Update () {
-
-		// This Code Makes The Character Jump
+		
+ 		// This code makes the character jump
 		if(Input.GetKeyDown (KeyCode.Space)&& Grounded){
 			Jump();
+		}
+ 		// This code makes the character move from side to side using the A&D keys
+		if(Input.GetKey (KeyCode.D)){
+			GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
 			
 		}
-	// This Makes The Character Move From Side To Side
-	if(Input.GetKey (KeyCode.D)){
-		GetComponent<RigidBody2D>().Velocity = new Vector2(MoveSpeed, GetComponent<RigidBody2D>().Velocity.y);
-	}
-	if(Input.GetKey (KeyCode.A)){
-		GetComponent<RigidBody2D>().Velocity = new Vector2(-MoveSpeed, GetComponent<RigidBody2D>().Velocity.y);
-	}
-	
-	}
-	public void Jump(){
-		GetComponent<Rigidbody2D>().Velocity = new Vector2(GetComponent<Rigidbody2D>().Velocity.x, JumpHeight);
+		if(Input.GetKey (KeyCode.A)){
+			GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			
+		}
+ 	}
+ 	public void Jump(){
+		GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
 
 	
 
