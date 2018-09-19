@@ -1,0 +1,12 @@
+public class BarFunk : MonoBehaviour {
+    // Player combat variables
+	private float HitBox = 5;
+	public Transform HealthPoints = 50;
+    	// Use this for initialization
+	void Start () {
+	print("oof")
+// Update is called once per frame
+	void Update () {
+	// This Code Makes Character Attack
+	if(Input.GetKeyDown (KeyCode.Enter)&&Grounded){
+		Attack();
